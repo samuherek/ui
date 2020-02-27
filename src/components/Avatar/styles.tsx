@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AvatarBase = styled.div<{ size: number }>`
   width: ${props => `${props.size}px`};
@@ -11,7 +11,7 @@ export const AvatarBase = styled.div<{ size: number }>`
   user-select: none;
   justify-content: center;
 
-  .SSAvatarImg {
+  .AvatarImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
