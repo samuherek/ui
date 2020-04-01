@@ -1,19 +1,19 @@
-import React from 'react';
-import Input from './Input';
-import { storiesOf, addDecorator } from '@storybook/react';
-import { withA11Y } from '@storybook/addon-a11y';
-import { WrapStyled } from '../Button/Button.stories';
-import FormControl from '../FormControl/FormControl';
-import InputAdornment from '../InputAdornment';
+import React from "react";
+import Input from "./Input";
+import { storiesOf, addDecorator } from "@storybook/react";
+import { withA11Y } from "@storybook/addon-a11y";
+import { WrapStyled } from "../../theme/Button/Button.stories";
+import FormControl from "../FormControl/FormControl";
+import InputAdornment from "../InputAdornment";
 
-const stories = storiesOf('Input', module);
+const stories = storiesOf("Input", module);
 addDecorator(withA11Y);
 
-stories.add('Overview', () => <div>To be done...</div>);
+stories.add("Overview", () => <div>To be done...</div>);
 
-stories.add('InputBase', () => <div>To be done.</div>);
+stories.add("InputBase", () => <div>To be done.</div>);
 
-stories.add('Input', () => (
+stories.add("Input", () => (
   <WrapStyled>
     <div>
       <p>Input outlined</p>
@@ -40,7 +40,7 @@ stories.add('Input', () => (
   </WrapStyled>
 ));
 
-stories.add('Input Adornment', () => (
+stories.add("Input Adornment", () => (
   <WrapStyled>
     <FormControl>
       <Input

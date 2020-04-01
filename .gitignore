@@ -25,3 +25,10 @@ yarn-error.log*
 
 # Storybook
 storybook-static
+
+# Local setup for copying files from one project to another
+.watcher.json
+
+
+# Local setup for quick component generation
+.compogen

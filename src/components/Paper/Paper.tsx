@@ -1,32 +1,31 @@
-import clsx from 'clsx';
-import React from 'react';
-import styled from 'styled-components';
+import clsx from "clsx";
+import React from "react";
+import styled from "styled-components";
+import { StandardProps } from "../types";
 
-interface Props {
-  className?: string;
+export interface PaperProps extends StandardProps<HTMLElement> {
   component?: any;
-  children: React.ReactNode;
   elevation?: number;
 }
 
 export const classes = {
-  root: 'SSPaper',
-  elevation: 'elevation',
+  root: "SSPaper",
+  elevation: "elevation"
 };
 
 const elevationShadow = [
-  'none',
-  '0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12)',
-  '0 7px 17px 0 rgba(0,0,0,0.05)',
+  "none",
+  "0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12)",
+  "0 7px 17px 0 rgba(0,0,0,0.05)"
 ];
 
 const PaperStyled = styled.div<{
-  overflowY?: 'hidden' | 'auto';
+  overflowY?: "hidden" | "auto";
   elevation?: number;
 }>`
   display: flex;
   position: relative;
-  overflow-y: ${({ overflowY = 'auto' }) => overflowY};
+  overflow-y: ${({ overflowY = "auto" }) => overflowY};
   flex-direction: column;
   flex: 0 1 auto;
   box-shadow: ${({ elevation = 0 }) => elevationShadow[elevation]};
@@ -34,7 +33,7 @@ const PaperStyled = styled.div<{
   border-radius: 4px;
 `;
 
-const Paper = React.forwardRef<Props, any>((props, ref) => {
+const Paper = React.forwardRef<unknown, PaperProps>((props, ref) => {
   const {
     className,
     component: Component = PaperStyled,

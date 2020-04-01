@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { SyntheticEvent } from "react";
 import styled, { css } from "styled-components";
-import Button from "../Button";
+import Button from "../../theme/Button";
 import ButtonLoader from "../ButtonLoader";
 
 interface Props {

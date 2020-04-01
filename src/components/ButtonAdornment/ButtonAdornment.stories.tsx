@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonAdornment from "./ButtonAdornment";
-import Button from "../Button";
+import Button from "../../theme/Button";
 import { Bell } from "../icons";
 
 export default {

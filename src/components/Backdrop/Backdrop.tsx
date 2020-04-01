@@ -1,18 +1,9 @@
 // @flow
 import clsx from "clsx";
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import styled from "styled-components";
-import Fade from "../Fade";
-import { BackdropDark, BackdropLight } from "./styles";
-
-interface Props {
-  isOpen: boolean;
-  duration: number;
-  onClick?: (ev: SyntheticEvent<HTMLElement>) => void;
-  invisible?: boolean;
-  variant?: "light" | "dark";
-  className?: string;
-}
+import Fade from "../../transitions/Fade";
+import { BackdropProps } from "./types.d";
 
 export const classes = {
   root: "Backdrop"
@@ -28,34 +19,33 @@ const BackdropStyled = styled.div`
   touch-action: none;
 `;
 
-const variantComponent = {
-  light: BackdropLight,
-  dark: BackdropDark
-};
+export const BackdropLight = styled.div<{ invisible?: boolean }>`
+  background-color: ${({ invisible }) =>
+    invisible ? "transparent" : "rgba(255,255,255,0.75)"};
+`;
 
-const Backdrop = React.forwardRef<Props, any>((props, ref) => {
+export const BackdropDark = styled.div<{ invisible?: boolean }>`
+  background-color: ${({ invisible }) =>
+    invisible ? "transparent" : "rgba(50,50,50,0.65)"};
+`;
+
+const Backdrop = React.forwardRef<any, BackdropProps>((props, ref) => {
   const {
-    isOpen,
-    duration,
-    onClick,
+    open,
+    transitionDuration,
     invisible = false,
-    variant = "dark",
     className,
     ...rest
   } = props;
 
-  // @ts-ignore
-  const Component = variantComponent[variant];
-
   return (
-    <Fade in={isOpen} duration={duration} {...rest}>
+    <Fade in={open} timeout={transitionDuration} {...rest}>
       <BackdropStyled
-        as={Component}
+        as={BackdropDark}
         className={clsx(className, classes.root)}
         aria-hidden
         // @ts-ignore
         invisible={invisible}
-        onClick={onClick}
       />
     </Fade>
   );

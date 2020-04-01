@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
-import Fade from "../Fade";
+import Fade from "../../transitions/Fade";
 import Modal from "../Modal";
 import Paper from "../Paper";
 
@@ -90,7 +90,7 @@ const Dialog = React.forwardRef<Props, any>((props, ref) => {
       className={clsx(className, classes.root)}
       {...rest}
     >
-      <Fade appear in={isOpen} onExited={onExited} duration={duration}>
+      <Fade appear in={isOpen} onExited={onExited} timeout={duration}>
         <DocumentDivStyled
           role="document"
           onClick={handleBackdropClick}

@@ -3,6 +3,8 @@ import { colorByKey } from "./utils";
 
 const GlobalStyles = createGlobalStyle`
 :root {
+  --primary: blue;
+  --primary-shadow: rgba(0,0,250, 0.2);
   /* --primary: ${colorByKey("greenTeal")};
   --primary-hover: ${colorByKey("greenTeal2")};
   --primary-active: ${colorByKey("greenTeal3")};
