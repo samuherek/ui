@@ -21,8 +21,8 @@ export interface PortalProps {
   disablePortal?: boolean;
 }
 
-const Portal = React.forwardRef<any, PortalProps>(function Portal(props, ref) {
-  const { children, container, disablePortal = false } = props;
+export function usePortal(props: PortalProps, ref: React.Ref<any>) {
+  const { container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<HTMLElement | null>(null);
   // const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
 
@@ -53,7 +53,22 @@ const Portal = React.forwardRef<any, PortalProps>(function Portal(props, ref) {
   //   return children;
   // }
 
-  return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
+  return {
+    props,
+    ref,
+    mountNode
+  };
+}
+
+const Portal = React.forwardRef<any, PortalProps>(function Portal(
+  originalProps,
+  originalRef
+) {
+  const { mountNode, props } = usePortal(originalProps, originalRef);
+
+  return mountNode
+    ? ReactDOM.createPortal(props.children, mountNode)
+    : mountNode;
 });
 
 export default Portal;

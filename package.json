@@ -1,7 +1,22 @@
 {
-  "name": "ui",
+  "name": "@ui/mvp",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author": "Sam Uherek",
+  "description": "React components - a shot at the least opinionated UI components, themes and helpers for most flexible composability",
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samuherek/ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samuherek/ui/issues"
+  },
+  "homepage": "https://github.com/samuherek/ui#readme",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -63,6 +78,11 @@
     "rimraf": "^3.0.2",
     "typescript": "^3.8.2",
     "watchpack": "^1.6.1"
+  },
+  "peerDependencies": {
+    "@types/react": "^16.8.6",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "eslintConfig": {
     "extends": "react-app"

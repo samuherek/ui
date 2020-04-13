@@ -1,9 +1,9 @@
-import { ReactNode, CSSProperties } from "react";
+import { ReactNode } from "react";
 
 export interface BaseProps {
   children?: ReactNode;
   className?: string;
-  style?: CSSProperties;
+  // style?: CSSProperties;
 }
 
 export interface UICoreBaseProps extends BaseProps {

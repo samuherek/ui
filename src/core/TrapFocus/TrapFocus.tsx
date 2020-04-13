@@ -8,7 +8,9 @@ export interface TrapFocusProps {
   getDoc: () => any;
 }
 
-function TrapFocus({ children, open, getDoc }: TrapFocusProps) {
+export function useTrapFocus(props: TrapFocusProps, ref?: React.Ref<any>) {
+  const { open, getDoc, children } = props;
+
   const ignoreNextEnforceFocus = React.useRef<boolean | void>();
   const sentinelStart = React.useRef<HTMLDivElement | null>(null);
   const sentinelEnd = React.useRef<HTMLDivElement | null>(null);
@@ -115,13 +117,27 @@ function TrapFocus({ children, open, getDoc }: TrapFocusProps) {
     };
   }, [open]);
 
+  return {
+    props,
+    ref,
+    sentinelStart,
+    handleRef,
+    sentinelEnd
+  };
+}
+
+function TrapFocus(originalProps: TrapFocusProps) {
+  const { sentinelStart, handleRef, sentinelEnd, props } = useTrapFocus(
+    originalProps
+  );
+
   return (
     <React.Fragment>
       <div tabIndex={0} ref={sentinelStart} data-test="sentinelStart" />
       {React.cloneElement(
         // FIXME: figure out the typing
         // @ts-ignore
-        children,
+        props.children,
         { ref: handleRef }
       )}
       <div tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" />

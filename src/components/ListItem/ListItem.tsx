@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import clsx from "clsx";
-import ButtonBase from "../../core/ButtonBase/ButtonBase";
+import ButtonBase from "../ButtonBase/ButtonBase";
 
 export interface ListItemProps {
   children: React.ReactNode;

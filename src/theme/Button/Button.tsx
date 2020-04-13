@@ -2,7 +2,7 @@ import capitalize from "capitalize";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import ButtonBase from "../../core/ButtonBase";
+import ButtonBase from "../../components/ButtonBase";
 import {
   PrimaryContained,
   SecondaryContained,

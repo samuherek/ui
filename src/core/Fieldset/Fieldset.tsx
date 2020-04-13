@@ -1,33 +1,41 @@
 import React from "react";
-import clsx from "clsx";
+import cx from "clsx";
 import { BaseProps } from "../types";
 
-export interface FieldsetProps extends BaseProps {
-  disabled: boolean;
-  component?: any;
+export interface FieldsetProps
+  extends BaseProps,
+    React.HTMLProps<HTMLFieldSetElement> {
+  component?: React.ReactNode;
 }
 
 export const classes = {
-  root: "Fieldset",
   disabled: "disabled"
 };
 
-function Fieldset({
-  className,
-  disabled,
-  component: ComponentProp,
-  ...rest
-}: FieldsetProps) {
-  const Component = ComponentProp || "fieldset";
+export function useFieldset(props: FieldsetProps, ref?: React.Ref<any>) {
+  const { className, disabled, component } = props;
 
-  return (
-    <Component
-      className={clsx(className, classes.root, {
+  return {
+    props: {
+      ...props,
+      className: cx(className, {
         [classes.disabled]: disabled
-      })}
-      {...rest}
-    />
-  );
+      })
+    },
+    ref,
+    Component: component || "fieldset"
+  };
 }
+
+const Fieldset = React.forwardRef<any, FieldsetProps>(function Fieldset(
+  originalProps,
+  originalRef
+) {
+  const { Component, ref, props } = useFieldset(originalProps, originalRef);
+
+  // FIXME: not sure how to type this
+  // @ts-ignore
+  return <Component ref={ref} {...props} />;
+});
 
 export default Fieldset;

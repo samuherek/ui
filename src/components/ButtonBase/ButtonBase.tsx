@@ -2,7 +2,7 @@ import { Link } from "@reach/router";
 import clsx from "clsx";
 import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
-import { BaseProps } from "../types";
+import { BaseProps } from "../../core/types";
 
 export interface BaseButtonProps extends BaseProps {
   onClick?: any;

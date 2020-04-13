@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ButtonBase from "../../core/ButtonBase";
+import ButtonBase from "../../components/ButtonBase";
 
 const ButtonBaseStyled = styled(ButtonBase)`
   position: relative;

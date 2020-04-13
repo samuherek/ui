@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colorByKey } from "../../styles/utils";
-import ButtonBase from "../../core/ButtonBase";
+import ButtonBase from "../ButtonBase";
 
 export const ButtonBaseStyled = styled(ButtonBase)`
   text-align: center;
