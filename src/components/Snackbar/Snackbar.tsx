@@ -4,9 +4,9 @@ import styled from "styled-components";
 import Grow from "../../transitions/Grow";
 import SnackbarContent from "../SnackbarContent";
 
-interface SnackbarProps {
+export interface SnackbarProps {
   autoHideDuration?: number;
-  children: any;
+  children?: React.ReactNode;
   className?: string;
   disableWindowBlurListener?: boolean;
   message?: string;

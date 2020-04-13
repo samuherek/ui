@@ -7,7 +7,7 @@ import { useFormControlCtx } from "../FormControl";
 import mergeFormControlState from "../FormControl/mergeFormControlState";
 import useEnhancedEffect from "../../hooks/useEnhancedEffect";
 
-interface InputCoreProps
+export interface InputCoreProps
   extends UICoreBaseProps,
     React.HTMLProps<HTMLInputElement> {}
 

@@ -4,9 +4,9 @@ import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
 import { BaseProps } from "../../core/types";
 
-export interface BaseButtonProps extends BaseProps {
+export interface ButtonBaseProps extends BaseProps {
   onClick?: any;
-  component: React.ReactNode;
+  component?: React.ReactNode;
   to?: string;
   disabled?: boolean;
   tabIndex?: string | number;
@@ -49,7 +49,7 @@ const ButtonBaseStyled = styled.button`
   }
 `;
 
-const ButtonBase = React.forwardRef<BaseButtonProps, any>(function ButtonBase(
+const ButtonBase = React.forwardRef<any, ButtonBaseProps>(function ButtonBase(
   props,
   ref
 ) {
@@ -80,6 +80,7 @@ const ButtonBase = React.forwardRef<BaseButtonProps, any>(function ButtonBase(
   // Sometimes it's helpful to use dataset props. Thus we need to make sure we apply them to the button
   Object.keys(other).forEach(key => {
     if (key.startsWith("data-")) {
+      // @ts-ignore
       buttonProps[key] = other[key];
     }
   });
@@ -108,6 +109,7 @@ const ButtonBase = React.forwardRef<BaseButtonProps, any>(function ButtonBase(
       as={Component}
       ref={ref}
       tabIndex={disabled ? "-1" : tabIndex}
+      // @ts-ignore
       target={other && other.withNewTab ? "_blank" : null}
       className={clsx(className, classes.root)}
       {...buttonProps}

@@ -1,6 +1,5 @@
 // @flow
 import styled, { css } from "styled-components";
-import { colorByKey } from "../../styles/utils";
 
 export const TextBase = styled.p<{
   withEllipsis?: boolean;
@@ -34,7 +33,6 @@ export const H1 = styled(TextBase)`
   letter-spacing: -0.4px;
   line-height: 1.31;
   font-weight: bold;
-  color: ${colorByKey("black")};
 `;
 
 export const H2 = styled(TextBase)`
@@ -42,7 +40,6 @@ export const H2 = styled(TextBase)`
   letter-spacing: 0.4px;
   font-weight: 500;
   line-height: 1.39;
-  color: ${colorByKey("darkGrey")};
 `;
 
 export const H3 = styled(TextBase)`
@@ -50,7 +47,6 @@ export const H3 = styled(TextBase)`
   letter-spacing: 0.6px;
   font-weight: 500;
   line-height: 1.33;
-  color: ${colorByKey("black")};
 `;
 
 export const H4 = styled(TextBase)`
@@ -58,7 +54,6 @@ export const H4 = styled(TextBase)`
   letter-spacing: 0.6px;
   font-weight: 500;
   line-height: 1.5;
-  color: ${colorByKey("darkGrey")};
 `;
 
 export const H5 = styled(TextBase)`
@@ -66,19 +61,16 @@ export const H5 = styled(TextBase)`
   letter-spacing: 0.5px;
   font-weight: 500;
   line-height: 1.5;
-  color: ${colorByKey("cloudyBlue")};
 `;
 
 export const Paragraph = styled(TextBase)`
   font-size: 14px;
   letter-spacing: 0.6px;
   line-height: 1.43;
-  color: ${colorByKey("blueGrey")};
 `;
 
 export const Subtitle = styled(TextBase)`
   font-size: 16px;
   letter-spacing: 0.6px;
   line-height: 1.5;
-  color: ${colorByKey("blueGrey")};
 `;

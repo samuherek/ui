@@ -10,7 +10,7 @@ export const Base = () => {
   return (
     <>
       <div>Some content behind the backdrop</div>
-      <Backdrop />
+      <Backdrop open={true} />
     </>
   );
 };

@@ -6,6 +6,7 @@ import { StandardProps } from "../types";
 export interface PaperProps extends StandardProps<HTMLElement> {
   component?: any;
   elevation?: number;
+  children?: React.ReactNode;
 }
 
 export const classes = {

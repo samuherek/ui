@@ -1,13 +1,13 @@
-import clsx from 'clsx';
-import React, { SyntheticEvent } from 'react';
-import styled from 'styled-components';
-import { useForkRef } from '../../utils/reactHelpers';
-import { FormControlContext } from '../FormControl/FormControlProvider';
-import getFormControlState from '../FormControl/getFormControlState';
-import { isFilled } from './utils';
+import clsx from "clsx";
+import React, { SyntheticEvent } from "react";
+import styled from "styled-components";
+import { useForkRef } from "../../utils/ref";
+import mergeFormControlState from "../../core/FormControl/mergeFormControlState";
+import { isFilled } from "./utils";
+import { useFormControlCtx } from "../../core/FormControl";
 
 interface Props {
-  'aria-describedby'?: string;
+  "aria-describedby"?: string;
   // renderPrefix,
   autFocus?: boolean;
   autoComplete?: string;
@@ -50,15 +50,15 @@ interface Props {
 }
 
 export const classes = {
-  root: 'SSInputWrap',
-  input: 'SSInputBase',
-  disabled: 'disabled',
-  error: 'error',
-  fullWidth: 'full-width',
-  focused: 'focused',
-  filled: 'filled',
-  prefix: 'input-prefix',
-  suffix: 'input-suffix',
+  root: "SSInputWrap",
+  input: "SSInputBase",
+  disabled: "disabled",
+  error: "error",
+  fullWidth: "full-width",
+  focused: "focused",
+  filled: "filled",
+  prefix: "input-prefix",
+  suffix: "input-suffix"
 };
 
 const WrapStyled = styled.div`
@@ -110,7 +110,7 @@ const InputBaseStyled = styled.input`
     -webkit-appearance: none;
   } */
 
-  &[type='search'] {
+  &[type="search"] {
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
   }
@@ -118,7 +118,7 @@ const InputBaseStyled = styled.input`
 
 const InputBase = React.forwardRef<Props, any>(function InputBase(props, ref) {
   const {
-    'aria-describedby': ariaDescribedby,
+    "aria-describedby": ariaDescribedby,
     // onEmpty,
     // onFilled,
     // renderPrefix,
@@ -126,7 +126,7 @@ const InputBase = React.forwardRef<Props, any>(function InputBase(props, ref) {
     autoFocus = false,
     className,
     inputProps: inputPropsProp = {},
-    wrapProps = { as: 'div' },
+    wrapProps = { as: "div" },
     defaultValue,
     disabled = false,
     error = false,
@@ -149,21 +149,21 @@ const InputBase = React.forwardRef<Props, any>(function InputBase(props, ref) {
     startAdornment,
     endAdornment,
     rows,
-    type = 'text',
+    type = "text",
     value,
     ...rest
   } = props;
-  const ctxFormControl = React.useContext(FormControlContext);
+  const ctxFormControl = useFormControlCtx();
   const [focused, setFocused] = React.useState(false);
   const { current: isControlled } = React.useRef(value != null);
 
   const inputRef = React.useRef(null);
   const handleInputRef = useForkRef(inputRef, inputRefProp);
 
-  const fcs: any = getFormControlState({
+  const fcs: any = mergeFormControlState({
     props,
-    ctxFormControl,
-    states: ['disabled', 'error', 'required', 'filled'],
+    uiFormControlCtx: ctxFormControl,
+    states: ["disabled", "error", "required", "filled"]
   });
   fcs.focused = ctxFormControl ? ctxFormControl.focused : focused;
 
@@ -259,13 +259,13 @@ const InputBase = React.forwardRef<Props, any>(function InputBase(props, ref) {
 
   const inputProps: any = {
     ...inputPropsProp,
-    as: 'input',
+    as: "input"
   };
 
   inputProps.ref = handleInputRef;
 
   if (multiline || rows) {
-    inputProps.as = 'textarea';
+    inputProps.as = "textarea";
     inputProps.type = undefined;
   }
 
@@ -280,42 +280,40 @@ const InputBase = React.forwardRef<Props, any>(function InputBase(props, ref) {
         [classes.focused]: fcs.focused,
         [classes.filled]: fcs.filled,
         [classes.prefix]: startAdornment,
-        [classes.suffix]: endAdornment,
+        [classes.suffix]: endAdornment
       })}
       {...wrapProps}
     >
       {startAdornment}
-      <FormControlContext.Provider value={undefined}>
-        <InputBaseStyled
-          className={clsx(classes.input, {
-            [classes.disabled]: fcs.disabled,
-            [classes.prefix]: startAdornment,
-            [classes.suffix]: endAdornment,
-          })}
-          aria-describedby={ariaDescribedby}
-          aria-invalid={error}
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          defaultValue={defaultValue}
-          disabled={fcs.disabled}
-          id={id}
-          name={name}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          onChange={handleChange}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          rows={rows}
-          value={value}
-          type={type}
-          ref={inputRef}
-          required={fcs.required}
-          {...inputProps}
-          {...rest}
-        />
-      </FormControlContext.Provider>
+      <InputBaseStyled
+        className={clsx(classes.input, {
+          [classes.disabled]: fcs.disabled,
+          [classes.prefix]: startAdornment,
+          [classes.suffix]: endAdornment
+        })}
+        aria-describedby={ariaDescribedby}
+        aria-invalid={error}
+        autoComplete={autoComplete}
+        autoFocus={autoFocus}
+        defaultValue={defaultValue}
+        disabled={fcs.disabled}
+        id={id}
+        name={name}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        rows={rows}
+        value={value}
+        type={type}
+        ref={inputRef}
+        required={fcs.required}
+        {...inputProps}
+        {...rest}
+      />
       {endAdornment}
     </WrapStyled>
   );

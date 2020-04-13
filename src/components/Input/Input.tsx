@@ -19,6 +19,7 @@ const themedComponent = {
 const Input = React.forwardRef<Props, any>(function Input(props, ref) {
   const { variant = "outlined", className, ...rest } = props;
 
+  // @ts-ignore
   const ThemedComponent = themedComponent[`${variant}`] || "div";
 
   return (

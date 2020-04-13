@@ -1,75 +1,80 @@
-import React, { SyntheticEvent } from 'react';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import InputLabel from '../InputLabel';
+import React from "react";
+import FormControl from "../../core/FormControl";
+import Input from "../Input";
+import InputLabel from "../InputLabel";
+import { InputCoreProps } from "../../core/InputCore";
 
-interface Props {
+export interface TextFieldProps extends InputCoreProps {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
   className?: string;
-  defaultValue: any;
+  defaultValue?: any;
   disabled?: boolean;
   error?: boolean;
-  FormHelperTextProps: object;
+  FormHelperTextProps?: object;
+  focused?: boolean;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
-  id: string;
+  id?: string;
   InputLabelProps?: object;
   inputProps?: object;
   inputRef?: React.Ref<any>;
-  label?: React.ReactNode;
   multiline?: boolean;
   name: string;
-  onBlur?: (ev: SyntheticEvent<any>) => void;
-  onChange: (ev: SyntheticEvent<any>) => void;
-  onFocus?: (ev: SyntheticEvent<any>) => void;
+  // onBlur?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  // onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  // onFocus?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
-  rows?: string | number;
   select?: boolean;
   SelectProps?: object;
   type?: string;
   value: any;
-  variant?: 'standard';
+  variant?: "standard";
   startAdornment?: any;
   endAdornment?: any;
 }
 const variantInputComponent = {
-  standard: Input,
+  standard: Input
 };
 
-const TextField = React.forwardRef<Props, any>(function TextField(props, ref) {
+const TextField = React.forwardRef<any, TextFieldProps>(function TextField(
+  props,
+  ref
+) {
   const {
     autoComplete,
     autoFocus,
     children,
     className,
     defaultValue,
-    error,
+    endAdornment,
+    error = false,
     FormHelperTextProps,
     fullWidth,
+    focused = false,
     helperText,
     id,
     InputLabelProps,
     inputProps,
+    inputRef,
     label,
     multiline,
     name,
-    inputRef,
     onBlur,
     onChange,
     onFocus,
     placeholder,
     required = false,
     rows,
+    disabled = false,
     select = false,
     SelectProps,
+    startAdornment,
     type,
     value,
-    variant = 'standard',
-    startAdornment,
-    endAdornment,
+    variant = "standard",
     ...rest
   } = props;
 
@@ -81,16 +86,19 @@ const TextField = React.forwardRef<Props, any>(function TextField(props, ref) {
   const InputMore = {};
 
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+  // @ts-ignore
   const InputComponent = variantInputComponent[variant];
 
   return (
     <FormControl
+      error={error}
+      focused={focused}
+      // @ts-ignore
       ref={ref}
+      disabled={disabled}
       className={className}
-      fullWidth={fullWidth}
-      pretendFilled={!!placeholder}
       required={required}
-      {...rest}
+      // {...rest}
     >
       {!label ? null : <InputLabel htmlFor={id || name}>{label}</InputLabel>}
       {select ? null : (

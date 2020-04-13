@@ -1,11 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
-import styled from 'styled-components';
-import {
-  // useFormControlCtx,
-  FormControlContext,
-} from '../FormControl/FormControlProvider';
-import { colorByKey } from '../../theme/utils';
+import React from "react";
+import clsx from "clsx";
+import styled from "styled-components";
 
 interface Props {
   children: any;
@@ -13,21 +8,20 @@ interface Props {
   component?: any;
   disablePointerEvents?: boolean;
   disableTypography?: boolean;
-  position: 'start' | 'end';
+  position: "start" | "end";
   variant?: string;
 }
 
 export const classes = {
-  root: 'SSInputAdornment',
-  positionStart: 'start',
-  positionEnd: 'end',
+  root: "SSInputAdornment",
+  positionStart: "start",
+  positionEnd: "end"
 };
 
 const WrapStyled = styled.div`
   display: flex;
   max-height: 2em;
   align-items: center;
-  color: ${colorByKey('cloudyBlue')};
 
   &.start {
     margin-right: 8px;
@@ -45,7 +39,7 @@ const InputAdornment = React.forwardRef<Props, any>(function InputAdornment(
   const {
     children,
     className,
-    component: Component = 'div',
+    component: Component = "div",
     // disablePointerEvents = false,
     // disableTypography = false,
     position,
@@ -58,19 +52,17 @@ const InputAdornment = React.forwardRef<Props, any>(function InputAdornment(
   // let variant = variantProp;
 
   return (
-    <FormControlContext.Provider value={undefined}>
-      <WrapStyled
-        as={Component}
-        ref={ref}
-        className={clsx(className, classes.root, {
-          [classes.positionStart]: position === 'start',
-          [classes.positionEnd]: position === 'end',
-        })}
-        {...rest}
-      >
-        {typeof children === 'string' ? <span>{children}</span> : children}
-      </WrapStyled>
-    </FormControlContext.Provider>
+    <WrapStyled
+      as={Component}
+      ref={ref}
+      className={clsx(className, classes.root, {
+        [classes.positionStart]: position === "start",
+        [classes.positionEnd]: position === "end"
+      })}
+      {...rest}
+    >
+      {typeof children === "string" ? <span>{children}</span> : children}
+    </WrapStyled>
   );
 });
 

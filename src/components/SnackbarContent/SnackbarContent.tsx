@@ -39,6 +39,7 @@ const SnackbarContent = React.forwardRef<unknown, SnackbarContentProps>(
       // @ts-ignore
       <PaperStyled
         ref={ref}
+        // @ts-ignore
         role="alertdialog"
         className={clsx(className, classes.root)}
         elevation={1}

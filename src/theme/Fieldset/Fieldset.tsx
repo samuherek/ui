@@ -22,6 +22,7 @@ const FieldsetStyled = styled(FieldsetCore)`
 `;
 
 function Fieldset({ className, ...rest }: FieldsetProps) {
+  // @ts-ignore
   return <FieldsetStyled className={cx(className, classes.root)} {...rest} />;
 }
 

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colorByKey } from "../../styles/utils";
 import ButtonBase from "../ButtonBase";
 
 export const ButtonBaseStyled = styled(ButtonBase)`
@@ -33,30 +32,6 @@ export const PrimaryText = styled(ButtonBaseStyled)`
   }
 `;
 
-export const SecondaryText = styled(ButtonBaseStyled)`
-  color: ${colorByKey("battleshipGrey")};
+export const SecondaryText = styled(ButtonBaseStyled)``;
 
-  &:hover {
-    color: ${colorByKey("battleshipGrey")};
-    background: ${colorByKey("paleLilac50")};
-  }
-
-  &:active,
-  &.active {
-    background: ${colorByKey("paleLilac66")};
-  }
-`;
-
-export const DangerText = styled(ButtonBaseStyled)`
-  color: ${colorByKey("orangeyRed")};
-
-  &:hover {
-    color: ${colorByKey("white")};
-    background: ${colorByKey("orangeyRed")};
-  }
-
-  &:active,
-  &.active {
-    background: ${colorByKey("orangeyRed")};
-  }
-`;
+export const DangerText = styled(ButtonBaseStyled)``;

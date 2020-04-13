@@ -66,6 +66,7 @@ const Button = React.forwardRef<Props, any>(function Button(props, ref) {
     color = "tertiary",
     className,
     disabled,
+    onClick,
     ...other
   } = props;
 
@@ -93,6 +94,7 @@ const Button = React.forwardRef<Props, any>(function Button(props, ref) {
       })}
       disabled={disabled}
       ref={ref}
+      onClick={() => console.log("clicked")}
       {...other}
     >
       <LabelStyled className={classes.label}>{children}</LabelStyled>
